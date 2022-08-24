@@ -8,6 +8,7 @@ from tgbot.config import load_config
 from tgbot.handlers.admin import admin_router
 from tgbot.handlers.user import user_router
 from tgbot.middlewares.config import ConfigMiddleware
+from tgbot.db import start_db
 from tgbot.services import broadcaster
 
 logger = logging.getLogger(__name__)
@@ -23,6 +24,7 @@ def register_global_middlewares(dp: Dispatcher, config):
 
 
 async def main():
+    await start_db.postgre_start()
     logging.basicConfig(
         level=logging.INFO,
         format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
