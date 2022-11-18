@@ -8,9 +8,9 @@
    2. Встановить залежності із requirements.txt: `pip install -r requirements.txt`
    3. Запустіть проєкт з команди `python3 bot.py`
 4. **Реєстрація хендлерів**
-   1. Створіть у папці `handlers` новий файл з розширенням `.py`
-   2. Створіть новий роутер `admin_router = Router()`
-   3. У файлі `bot.py` імпортуйте створенний роутер `from tgbot.handlers.admin import admin_router`
+   1. Створіть у папці `handlers` новий файл з розширенням `new_file.py`
+   2. Створіть новий роутер `name_router = Router()`
+   3. У файлі `bot.py` імпортуйте створенний роутер `from tgbot.handlers.new_file import name_router`
    4. Додайте роутер до циклу додавання роутерів у діспатчер `for router in...`
 4. **Підготовка проекту до деплою**
    1. Виконайте команду `pip freeze > requirements.txt` для запису усіх встанолених модулів
