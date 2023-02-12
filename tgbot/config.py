@@ -37,16 +37,16 @@ def load_config(path: str = None):
 
     return Config(
         tg_bot=TgBot(
-            token=env.str("BOT_TOKEN"),
-            admin_ids=list(map(int, env.list("ADMINS"))),
-            use_redis=env.bool("USE_REDIS"),
+            token="BOT_TOKEN",
+            admin_ids=[],
+            use_redis=False,
         ),
         db=DbConfig(
-            host=env.str('DB_HOST'),
-            password=env.str('DB_PASS'),
-            user=env.str('DB_USER'),
-            database=env.str('DB_NAME'),
-            db_uri=env.str('DB_URI')
+            host='DB_HOST',
+            password='DB_PASS',
+            user='DB_USER',
+            database='DB_NAME',
+            db_uri='DB_URI'
         ),
         misc=Miscellaneous()
     )
