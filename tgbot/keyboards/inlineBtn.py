@@ -1,5 +1,6 @@
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardButton, InlineKeyboardBuilder
 from aiogram import Bot, types
+from aiogram.filters.callback_data import CallbackData
 
 
 class CastomCallback(CallbackData, prefix="fabnum"):
