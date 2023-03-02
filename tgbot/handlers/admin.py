@@ -19,6 +19,7 @@ import psycopg2
 from psycopg2 import sql
 from psycopg2.extensions import AsIs
 
+from aiogram.filters import Command, Text
 from tgbot.filters.admin import AdminFilter
 
 admin_router = Router()
@@ -36,6 +37,6 @@ base = psycopg2.connect(
 cur = base.cursor()
 
 
-@admin_router.message(commands=["admin"], state="*")
-async def admin_start(message: Message):
-    await message.reply("Вітаю, адміне!")
+# @admin_router.message(commands=["admin"], state="*")
+# async def admin_start(message: Message):
+#     await message.reply("Вітаю, адміне!")

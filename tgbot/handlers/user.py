@@ -19,6 +19,8 @@ import psycopg2
 from psycopg2 import sql
 from psycopg2.extensions import AsIs
 
+from aiogram.filters import Command, Text
+
 user_router = Router()
 config = load_config(".env")
 bot = Bot(token=config.tg_bot.token, parse_mode='HTML')

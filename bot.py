@@ -24,7 +24,7 @@ def register_global_middlewares(dp: Dispatcher, config):
 
 
 async def main():
-    await start_db.postgre_start()
+    # await start_db.postgre_start()
     logging.basicConfig(
         level=logging.INFO,
         format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
