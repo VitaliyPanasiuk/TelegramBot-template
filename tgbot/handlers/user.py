@@ -1,4 +1,5 @@
 from aiogram import Router, Bot, types
+from aiogram.filters import Command, Text, StateFilter
 from aiogram.types import Message,FSInputFile
 from tgbot.config import load_config
 from aiogram.fsm.context import FSMContext
@@ -19,7 +20,6 @@ import psycopg2
 from psycopg2 import sql
 from psycopg2.extensions import AsIs
 
-from aiogram.filters import Command, Text
 
 user_router = Router()
 config = load_config(".env")
@@ -33,8 +33,23 @@ base = psycopg2.connect(
 )
 cur = base.cursor()
 
-
-@user_router.message(commands=["start"])
+# hanldler for commands
+@user_router.message(Command("start"))
 async def user_start(message: Message):
     msg = await bot.send_message(user_id, "Вітаю, звичайний користувач!")
     asyncio.create_task(delete_message(msg, 20))
+    
+    
+# hanldler for text messages
+# 1 version
+@user_router.message(Text('Главное меню'))
+async def user_start(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
+    
+# 2 version
+@user_router.message(F.text == 'Главное меню')
+async def user_start(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
+
+# version for some text messages
+# @user_router.message(F.text.in_({'Покупка акаунтов бирж', 'Покупка кошелька Юмани'}))
