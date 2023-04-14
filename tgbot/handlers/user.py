@@ -7,7 +7,7 @@ from aiogram.fsm.state import State, StatesGroup
 from magic_filter import F
 
 import time
-import datetime
+from datetime import datetime
 import requests
 import asyncio
 
@@ -53,3 +53,7 @@ async def user_start(message: types.Message, state: FSMContext):
 
 # version for some text messages
 # @user_router.message(F.text.in_({'Покупка акаунтов бирж', 'Покупка кошелька Юмани'}))
+
+@user_router.callback_query(CastomCallback.filter(F.action == "end_transaction"))
+async def user_start(callback_query: types.CallbackQuery,callback_data: CastomCallback,state: FSMContext,):
+    user_id = callback_query.from_user.id

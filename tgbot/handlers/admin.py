@@ -1,12 +1,12 @@
 from aiogram import Router, Bot, types
+from aiogram.filters import Command, Text, StateFilter
 from aiogram.types import Message, FSInputFile
-from tgbot.config import load_config
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from magic_filter import F
 
 import time
-import datetime
+from datetime import datetime
 import requests
 import asyncio
 
@@ -19,7 +19,7 @@ import psycopg2
 from psycopg2 import sql
 from psycopg2.extensions import AsIs
 
-from aiogram.filters import Command, Text
+from tgbot.config import load_config
 from tgbot.filters.admin import AdminFilter
 
 admin_router = Router()
@@ -37,6 +37,6 @@ base = psycopg2.connect(
 cur = base.cursor()
 
 
-# @admin_router.message(commands=["admin"], state="*")
-# async def admin_start(message: Message):
-#     await message.reply("Вітаю, адміне!")
+@admin_router.message(Text('admin'))
+async def user_start(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
