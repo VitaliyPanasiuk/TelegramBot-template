@@ -1,8 +1,8 @@
 from aiogram import Router, Bot, types
 from aiogram.types import Message, FSInputFile
 from tgbot.config import load_config
-from aiogram.dispatcher.fsm.context import FSMContext
-from aiogram.dispatcher.fsm.state import State, StatesGroup
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import State, StatesGroup
 
 import psycopg2
 from psycopg2 import sql
