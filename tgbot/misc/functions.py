@@ -13,7 +13,6 @@ import asyncio
 
 config = load_config(".env")
 bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
-bot2 = Bot(token=config.tg_bot.token2, parse_mode="HTML")
 
 base = psycopg2.connect(
     dbname=config.db.database,
