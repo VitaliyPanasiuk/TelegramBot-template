@@ -1,5 +1,5 @@
 from aiogram import Router, Bot, types
-from aiogram.filters import Command, Text, StateFilter
+from aiogram.filters import Command, StateFilter
 from aiogram.types import Message,FSInputFile
 from tgbot.config import load_config
 from aiogram.fsm.context import FSMContext
@@ -40,11 +40,6 @@ async def user_start(message: Message):
     asyncio.create_task(delete_message(msg, 20))
     
     
-# hanldler for text messages
-# 1 version
-@user_router.message(Text('Главное меню'))
-async def user_start(message: types.Message, state: FSMContext):
-    user_id = message.from_user.id
     
 # 2 version
 @user_router.message(F.text == 'Главное меню')

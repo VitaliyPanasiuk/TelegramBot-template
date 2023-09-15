@@ -1,5 +1,5 @@
 from aiogram import Router, Bot, types
-from aiogram.filters import Command, Text, StateFilter
+from aiogram.filters import Command, StateFilter
 from aiogram.types import Message, FSInputFile
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
