@@ -1,5 +1,5 @@
 aiogram>=3.0.0b6
 aioredis~=2.0
 environs~=9.0
-psycopg2==2.9.3
+asyncpg
 requests

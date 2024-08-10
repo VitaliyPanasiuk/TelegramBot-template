@@ -15,28 +15,21 @@ from tgbot.services.del_message import delete_message
 from tgbot.keyboards.inlineBtn import CastomCallback
 # CastomCallback.filter(F.action == "") // callback_query: types.CallbackQuery, callback_data: SellersCallbackFactory, state: FSMContext
 
-import psycopg2
-from psycopg2 import sql
-from psycopg2.extensions import AsIs
+
+from db import get_pool_func
 
 from tgbot.config import load_config
 from tgbot.filters.admin import AdminFilter
 
 admin_router = Router()
 admin_router.message.filter(AdminFilter())
-
+pool = asyncio.run(get_pool_func())
 config = load_config(".env")
 bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
 
-base = psycopg2.connect(
-    dbname=config.db.database,
-    user=config.db.user,
-    password=config.db.password,
-    host=config.db.host,
-)
-cur = base.cursor()
 
 
-@admin_router.message(Text('admin'))
+
+@admin_router.message(F.text('admin'))
 async def user_start(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
