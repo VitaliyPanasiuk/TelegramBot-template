@@ -1,10 +1,11 @@
 from aiogram import Router, Bot, types
+from aiogram.client.bot import DefaultBotProperties
 from aiogram.filters import Command, StateFilter
 from aiogram.types import Message,FSInputFile
 from tgbot.config import load_config
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from magic_filter import F
+from aiogram import F
 
 import time
 from datetime import datetime
@@ -16,17 +17,17 @@ from tgbot.services.del_message import delete_message
 from tgbot.keyboards.inlineBtn import CastomCallback
 # CastomCallback.filter(F.action == "") // callback_query: types.CallbackQuery, callback_data: SellersCallbackFactory, state: FSMContext
 
-from db import get_pool_func
+from db.db import db_pool
+from logs.logs import initlogging
 
 
 user_router = Router()
 config = load_config(".env")
-bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
-pool = asyncio.run(get_pool_func())
+bot = Bot(token=config.tg_bot.token,
+        default=DefaultBotProperties(parse_mode='HTML'))
 
-# async with pool.acquire() as connection:
-#     user_info = await connection.fetchrow("SELECT * FROM users WHERE user_id = $1", )
-#     await connection.execute("UPDATE users SET auf_code = $1 WHERE user_id = $2", )
+# async with db_pool.acquire() as connection:
+db_logger, bot_logger = initlogging()
 
 @user_router.message(Command("start"))
 async def user_start(message: Message):
