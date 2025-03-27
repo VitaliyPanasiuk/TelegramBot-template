@@ -10,6 +10,7 @@ import time
 from datetime import datetime
 import requests
 import asyncio
+from db.db import get_pool_func
 
 from tgbot.services.del_message import delete_message
 
@@ -26,7 +27,8 @@ config = load_config(".env")
 bot = Bot(token=config.tg_bot.token,
         default=DefaultBotProperties(parse_mode='HTML'))
 
-
+# pool = await get_pool_func()
+    # async with pool.acquire() as connection:
 
 
 # @admin_router.message(F.text('admin'))

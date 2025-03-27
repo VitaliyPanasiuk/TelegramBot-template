@@ -12,7 +12,7 @@ from tgbot.services import broadcaster
 from db.db import init_db_pool, db_pool
 from logs.logs import initlogging
 
-# logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 async def on_startup(bot: Bot, admin_ids: list[int]):
@@ -25,11 +25,15 @@ def register_global_middlewares(dp: Dispatcher, config):
 
 
 async def main():
+    logging.basicConfig(
+        level=logging.INFO,
+        format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
+    )
+    logger.info("Starting bot")
+    
     db_logger, bot_logger = initlogging()
     bot_logger.info("Starting bot")
     
-    await init_db_pool()
-    db_logger.info("Starting DB") 
     
     config = load_config(".env")
 

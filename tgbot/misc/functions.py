@@ -4,7 +4,7 @@ from tgbot.config import load_config
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 
-from db.db import db_pool
+from db.db import get_pool_func
 
 import datetime
 import asyncio
@@ -12,4 +12,5 @@ import asyncio
 config = load_config(".env")
 bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
 
-# async with db_pool.acquire() as connection:
+# pool = await get_pool_func()
+#     async with pool.acquire() as connection:
