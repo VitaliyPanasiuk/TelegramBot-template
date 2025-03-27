@@ -11,12 +11,13 @@ class CastomCallback(CallbackData, prefix="fabnum"):
 
 def example_button():
     example = InlineKeyboardBuilder()
-    example.add(types.InlineKeyboardButton(
-        text='confirm',
-        callback_data=CastomCallback(action="end_order")
-    ))
+    example.button(
+        text='Принять ✅',
+        callback_data=CastomCallback(action='confirm_user' ,order_id = 1)
+    )
     example.add(types.InlineKeyboardButton(
         text='skip',
         callback_data='skip'
     ))
+    example.adjust(1)
     return example
