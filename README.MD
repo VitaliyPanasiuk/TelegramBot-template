@@ -2,6 +2,13 @@
 
 ### Для того, щоб почати використовувати:
 1. Скопіюйте `.env.dist` в `.env` i заповніть необхідні дані.
+BOT_TOKEN=BOT_TOKEN
+USE_REDIS=False
+DB_HOST=localhost
+DB_PASS=your_password
+DB_USER=your_user
+DB_NAME=your_db
+DB_URI=your_database_uri
 2. Створіть нові хендлери.
 3. **Встановлення віртуального середовища та модулів**
    1. Створіть [venv] `python -m venv venv`

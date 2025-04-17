@@ -37,16 +37,16 @@ def load_config(path: str = None):
 
     return Config(
         tg_bot=TgBot(
-            token="BOT_TOKEN",
-            admin_ids=[],
-            use_redis=False,
+            token=env.str("BOT_TOKEN"),
+            admin_ids=[],  # можно добавить парсинг списка, если нужно
+            use_redis=env.bool("USE_REDIS", default=False),
         ),
         db=DbConfig(
-            host='DB_HOST',
-            password='DB_PASS',
-            user='DB_USER',
-            database='DB_NAME',
-            db_uri='DB_URI'
+            host=env.str("DB_HOST"),
+            password=env.str("DB_PASS"),
+            user=env.str("DB_USER"),
+            database=env.str("DB_NAME"),
+            db_uri=env.str("DB_URI"),
         ),
         misc=Miscellaneous()
     )
