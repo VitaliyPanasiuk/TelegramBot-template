@@ -9,7 +9,6 @@ class DbConfig:
     password: str
     user: str
     database: str
-    db_uri: str
 
 
 @dataclass
@@ -38,7 +37,7 @@ def load_config(path: str = None):
     return Config(
         tg_bot=TgBot(
             token=env.str("BOT_TOKEN"),
-            admin_ids=[],  # можно добавить парсинг списка, если нужно
+            admin_ids=[],
             use_redis=env.bool("USE_REDIS", default=False),
         ),
         db=DbConfig(
@@ -46,7 +45,6 @@ def load_config(path: str = None):
             password=env.str("DB_PASS"),
             user=env.str("DB_USER"),
             database=env.str("DB_NAME"),
-            db_uri=env.str("DB_URI"),
         ),
         misc=Miscellaneous()
     )

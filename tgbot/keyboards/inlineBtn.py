@@ -5,7 +5,6 @@ from typing import Optional
 
 
 class CastomCallback(CallbackData, prefix="fabnum"):
-    # castom class for callback_data
     action: str
     order_id: Optional[int]
 

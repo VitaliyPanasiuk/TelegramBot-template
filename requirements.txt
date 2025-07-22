@@ -1,5 +1,5 @@
-aiogram>=3.0.0b6
-aioredis~=2.0
-environs~=9.0
+aiogram
+aioredis
+environs
 asyncpg
 requests

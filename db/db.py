@@ -3,7 +3,7 @@ from tgbot.config import load_config
 
 config = load_config(".env")
 
-db_pool = None  # Глобальная переменная для хранения пула
+db_pool = None
 
 
 async def init_db_pool(max_size):
@@ -12,7 +12,7 @@ async def init_db_pool(max_size):
         user=config.db.user,
         password=config.db.password,
         host=config.db.host,
-        max_size=max_size  # Установка максимального размера пула
+        max_size=max_size  
     )
     return pool
     
@@ -20,5 +20,5 @@ async def init_db_pool(max_size):
 async def get_pool_func():
     global db_pool
     if db_pool is None:
-        db_pool = await init_db_pool(20)  # Пул для первой группы (например, личные сообщения)
+        db_pool = await init_db_pool(20)
     return db_pool

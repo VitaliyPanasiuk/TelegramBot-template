@@ -9,14 +9,8 @@ from tgbot.handlers.admin import admin_router
 from tgbot.handlers.user import user_router
 from tgbot.middlewares.config import ConfigMiddleware
 from tgbot.services import broadcaster
-from db.db import init_db_pool, db_pool
-from logs.logs import initlogging
 
 logger = logging.getLogger(__name__)
-
-
-async def on_startup(bot: Bot, admin_ids: list[int]):
-    await broadcaster.broadcast(bot, admin_ids, "Бот був запущений")
 
 
 def register_global_middlewares(dp: Dispatcher, config):
@@ -30,10 +24,6 @@ async def main():
         format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
     )
     logger.info("Starting bot")
-    
-    db_logger, bot_logger = initlogging()
-    bot_logger.info("Starting bot")
-    
     
     config = load_config(".env")
 
@@ -50,7 +40,6 @@ async def main():
 
     register_global_middlewares(dp, config)
 
-    await on_startup(bot, config.tg_bot.admin_ids)
     await dp.start_polling(bot)
 
 

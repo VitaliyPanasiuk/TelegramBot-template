@@ -17,18 +17,12 @@ from tgbot.services.del_message import delete_message
 from tgbot.keyboards.inlineBtn import CastomCallback
 # CastomCallback.filter(F.action == "") // callback_query: types.CallbackQuery, callback_data: SellersCallbackFactory, state: FSMContext
 
-from db.db import get_pool_func
-from logs.logs import initlogging
-
 
 user_router = Router()
 config = load_config(".env")
 bot = Bot(token=config.tg_bot.token,
         default=DefaultBotProperties(parse_mode='HTML'))
 
-# pool = await get_pool_func()
-#     async with pool.acquire() as connection:
-db_logger, bot_logger = initlogging()
 
 @user_router.message(Command("start"))
 async def user_start(message: Message):
